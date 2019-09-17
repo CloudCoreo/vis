@@ -5,7 +5,7 @@
  * A dynamic, browser-based visualization library.
  *
  * @version 4.21.0
- * @date    2019-05-30
+ * @date    2019-09-17
  *
  * @license
  * Copyright (C) 2011-2017 Almende B.V, http://almende.com
@@ -25674,7 +25674,7 @@ var Images = function () {
             }
 
             //Clear the old subscription to the error event and put a new in place that only handle errors in loading the brokenImageUrl
-            imageToLoadBrokenUrlOn.onerror = function () {
+            imageToLoadBrokenUrlOn.image.onerror = function () {
                 // console.error("Could not load brokenImage:", brokenUrl);
                 // cache item will contain empty image, this should be OK for default
             };
@@ -25708,7 +25708,7 @@ var Images = function () {
         value: function load(url, brokenUrl) {
             var _this = this;
 
-            //Try and get the image from the cache, if successful then return the cached image   
+            //Try and get the image from the cache, if successful then return the cached image
             var cachedImage = this.images[url];
             if (cachedImage) return cachedImage;
 
@@ -25719,7 +25719,7 @@ var Images = function () {
             // Also, there will be multiple loads of the same image.
             this.images[url] = img;
 
-            //Subscribe to the event that is raised if the image loads successfully 
+            //Subscribe to the event that is raised if the image loads successfully
             img.image.onload = function () {
                 // Properly init the cached item and then request a redraw
                 _this._fixImageCoordinates(img.image);
